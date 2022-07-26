@@ -31,6 +31,7 @@ const CharacterPage: FC = () => {
       const { data } = await axios.get<ICharacter>(
         `https://rickandmortyapi.com/api/character/${params.id}`,
       );
+      console.log(data);
       setCharacter(data);
 
       const response = await axios.get<IEpisode>(data.episode[0]);

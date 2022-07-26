@@ -2,12 +2,16 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { ICharacter, ServerResponse } from '../../models/models';
 
-export const fetchCharacters = createAsyncThunk('users/fetchByIdStatus', async (page?: number) => {
-  const { data } = await axios.get<ServerResponse<ICharacter>>(
-    `https://rickandmortyapi.com/api/character/?page=${page}`,
-  );
-  return data;
-});
+export const fetchCharacters = createAsyncThunk(
+  'users/fetchByIdStatus',
+  async (sorting: { status: string; page: number; gender: string }) => {
+    const { status, page, gender } = sorting;
+    const { data } = await axios.get<ServerResponse<ICharacter>>(
+      `https://rickandmortyapi.com/api/character/?page=${page}&status=${status}&gender=${gender}`,
+    );
+    return data;
+  },
+);
 
 interface CharacterState {
   loading: 'pending' | 'succeeded' | 'failed';

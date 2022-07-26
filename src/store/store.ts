@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import characters from './slises/CharacterSlise';
+import filter from './slises/FilterSlise';
 
 export const store = configureStore({
   reducer: {
     characters,
+    filter,
   },
 });
 
