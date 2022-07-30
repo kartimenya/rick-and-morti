@@ -7,7 +7,6 @@ export interface ICharacter {
   name: string;
   species: string;
   status: 'Dead' | 'Alive' | 'unknown';
-  type: string;
   url: string;
   location: { name: string };
 }
