@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ICharacter, ServerResponse } from '../../models/models';
 
 export const fetchCharacters = createAsyncThunk(
-  'users/fetchByIdStatus',
+  'users/fetchCharacter',
   async (sorting: { status: string; page: number; gender: string }) => {
     const { status, page, gender } = sorting;
     const { data } = await axios.get<ServerResponse<ICharacter>>(

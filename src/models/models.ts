@@ -5,7 +5,6 @@ export interface ICharacter {
   id: number;
   image: string;
   name: string;
-  species: string;
   status: 'Dead' | 'Alive' | 'unknown';
   url: string;
   location: { name: string };

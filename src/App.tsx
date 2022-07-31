@@ -2,6 +2,7 @@ import Layout, { Content } from 'antd/lib/layout/layout';
 import React, { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Search from './components/Search';
+import Bookmarks from './pages/Bookmarks';
 import CharacterPage from './pages/CharacterPage';
 import Home from './pages/Home';
 
@@ -13,6 +14,7 @@ const App: FC = () => {
       <Content>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/character/:id" element={<CharacterPage />} />
         </Routes>
       </Content>
