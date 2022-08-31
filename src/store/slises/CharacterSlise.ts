@@ -9,6 +9,7 @@ export const fetchCharacters = createAsyncThunk(
     const { data } = await axios.get<ServerResponse<ICharacter>>(
       `https://rickandmortyapi.com/api/character/?page=${page}&status=${status}&gender=${gender}`,
     );
+
     return data;
   },
 );

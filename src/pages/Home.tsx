@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../hoocs/reduxHoocs';
 import { fetchCharacters } from '../store/slises/CharacterSlise';
 import { setFilters } from '../store/slises/FilterSlise';
 import { CharacterCartSpiner } from '../components/CharacterCart/CharacterCartSpiner';
+import axios from 'axios';
 
 const Home: FC = () => {
   const disputch = useAppDispatch();

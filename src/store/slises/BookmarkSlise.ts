@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICharacter } from './../../models/models';
 
 interface BookmarkState {
-  bookmarkCharacter: ICharacter[];
+  bookmarkCharacters: ICharacter[];
 }
 
 const initialState: BookmarkState = {
-  bookmarkCharacter: [],
+  bookmarkCharacters: [],
 };
 
 const bookmarkSlise = createSlice({
@@ -14,14 +14,14 @@ const bookmarkSlise = createSlice({
   initialState,
   reducers: {
     setBookmarkItem(state, action: PayloadAction<ICharacter>) {
-      const findItem = state.bookmarkCharacter.find((obj) => obj.id === action.payload.id);
+      const findItem = state.bookmarkCharacters.find((obj) => obj.id === action.payload.id);
 
       if (findItem) {
-        state.bookmarkCharacter = state.bookmarkCharacter.filter(
+        state.bookmarkCharacters = state.bookmarkCharacters.filter(
           (item) => item.id != action.payload.id,
         );
       } else {
-        state.bookmarkCharacter.push(action.payload);
+        state.bookmarkCharacters.push(action.payload);
       }
     },
   },
