@@ -28,23 +28,23 @@ const CharacterPage: FC = () => {
     episode: '',
   });
 
-  const searchCharacter = async () => {
-    try {
-      const { data } = await axios.get<ICharacter>(
-        `https://rickandmortyapi.com/api/character/${params.id}`,
-      );
-      setCharacter(data);
-
-      const response = await axios.get<IEpisode>(data.episode[0]);
-      setEpisode(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const searchCharacter = async () => {
+      try {
+        const { data } = await axios.get<ICharacter>(
+          `https://rickandmortyapi.com/api/character/${params.id}`,
+        );
+        setCharacter(data);
+
+        const response = await axios.get<IEpisode>(data.episode[0]);
+        setEpisode(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     searchCharacter();
-  }, []);
+  }, [dispatch]);
 
   const addBookmark = () => {
     dispatch(setBookmarkItem(character));

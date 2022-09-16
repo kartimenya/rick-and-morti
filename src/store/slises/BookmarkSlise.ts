@@ -18,7 +18,7 @@ const bookmarkSlise = createSlice({
 
       if (findItem) {
         state.bookmarkCharacters = state.bookmarkCharacters.filter(
-          (item) => item.id != action.payload.id,
+          (item) => item.id !== action.payload.id,
         );
       } else {
         state.bookmarkCharacters.push(action.payload);
