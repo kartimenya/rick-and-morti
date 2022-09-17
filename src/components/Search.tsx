@@ -18,15 +18,15 @@ const Search: FC = () => {
     history(`character/${id}`);
   };
 
-  const searchCharacter = async () => {
-    const { data } = await axios.get<ServerResponse<ICharacter>>(
-      `https://rickandmortyapi.com/api/character/?name=${debounced}`,
-    );
-    setFind(data.results);
-    setDropdown(true);
-  };
-
   useEffect(() => {
+    const searchCharacter = async () => {
+      const { data } = await axios.get<ServerResponse<ICharacter>>(
+        `https://rickandmortyapi.com/api/character/?name=${debounced}`,
+      );
+      setFind(data.results);
+      setDropdown(true);
+    };
+
     if (debounced.length > 1) {
       searchCharacter();
     } else {
