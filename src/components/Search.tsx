@@ -38,6 +38,7 @@ const Search: FC = () => {
     <div style={{ position: 'relative', marginBottom: '20px' }}>
       <Input
         value={value}
+        allowClear
         onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.currentTarget.value)}
         placeholder="Search..."
       />

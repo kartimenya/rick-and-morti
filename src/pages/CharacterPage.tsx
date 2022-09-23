@@ -10,7 +10,7 @@ import { setBookmarkItem } from '../store/slises/BookmarkSlise';
 const CharacterPage: FC = () => {
   const { bookmarkCharacters } = useAppSelector((state) => state.bookmark);
   const dispatch = useAppDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const params = useParams<'id'>();
   const [character, setCharacter] = useState<ICharacter>({
     created: '',
@@ -52,7 +52,7 @@ const CharacterPage: FC = () => {
 
   return (
     <div>
-      <PageHeader onBack={() => history(`/`)} title="Character" />
+      <PageHeader onBack={() => navigate(-1)} title="Character" />
       {character.name ? (
         <Card style={{ maxWidth: '670px', position: 'relative' }}>
           <Row align="middle" justify="center">
