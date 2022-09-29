@@ -1,11 +1,13 @@
+import React, { FC, memo } from 'react';
 import { Select, Space } from 'antd';
-import React from 'react';
 import { useAppDispatch, useAppSelector } from '../hoocs/reduxHoocs';
 import { setFilters } from '../store/slises/FilterSlise';
 
-export const Filters = () => {
+export const Filters: FC = memo(() => {
   const disputch = useAppDispatch();
   const filters = useAppSelector((state) => state.filter);
+
+  console.log('filters');
 
   const genderChange = (gender: string) => {
     disputch(setFilters({ ...filters, gender, page: 1 }));
@@ -40,4 +42,4 @@ export const Filters = () => {
       </Select>
     </Space>
   );
-};
+});

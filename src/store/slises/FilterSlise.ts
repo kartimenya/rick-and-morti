@@ -17,9 +17,9 @@ const filterSlise = createSlice({
   initialState,
   reducers: {
     setFilters(state, action: PayloadAction<IFilters>) {
-      state.page = action.payload.page;
       state.status = action.payload.status;
       state.gender = action.payload.gender;
+      state.page = action.payload.page;
     },
   },
 });

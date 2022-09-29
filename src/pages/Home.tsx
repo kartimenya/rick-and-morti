@@ -1,21 +1,49 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { Col, Pagination, Row, Space } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CharacterCart from '../components/CharacterCart';
 import { Filters } from '../components/Filters';
 import { useAppDispatch, useAppSelector } from '../hoocs/reduxHoocs';
 import { fetchCharacters } from '../store/slises/CharacterSlise';
 import { setFilters } from '../store/slises/FilterSlise';
 import { CharacterCartSpiner } from '../components/CharacterCart/CharacterCartSpiner';
-import axios from 'axios';
+import qs from 'qs';
 
 const Home: FC = () => {
   const disputch = useAppDispatch();
   const { count, characters, loading } = useAppSelector((state) => state.characters);
   const filters = useAppSelector((state) => state.filter);
+  const navigate = useNavigate();
+  const isSearch = useRef(false);
+  const isMounted = useRef(false);
+
+  console.log('home');
 
   useEffect(() => {
-    disputch(fetchCharacters(filters));
+    if (window.location.search) {
+      const params: any = qs.parse(window.location.search.substring(1));
+      disputch(setFilters({ ...params, page: Number(params.page) }));
+      isSearch.current = true;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isSearch.current) {
+      disputch(fetchCharacters(filters));
+    }
+
+    isSearch.current = false;
+  }, [filters]);
+
+  useEffect(() => {
+    const queryString = qs.stringify({
+      page: filters.page,
+      status: filters.status,
+      gender: filters.gender,
+    });
+    navigate(`?${queryString}`);
+
+    isMounted.current = true;
   }, [filters]);
 
   const pageChange = (page: number) => {
