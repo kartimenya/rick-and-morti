@@ -36,12 +36,14 @@ const Home: FC = () => {
   }, [filters]);
 
   useEffect(() => {
-    const queryString = qs.stringify({
-      page: filters.page,
-      status: filters.status,
-      gender: filters.gender,
-    });
-    navigate(`?${queryString}`);
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        page: filters.page,
+        status: filters.status,
+        gender: filters.gender,
+      });
+      navigate(`?${queryString}`);
+    }
 
     isMounted.current = true;
   }, [filters]);
