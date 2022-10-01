@@ -19,8 +19,7 @@ export const Filters: FC = memo(() => {
     <Space size={20}>
       <Select
         style={{ width: 120 }}
-        placeholder="status"
-        defaultValue={filters.status ? filters.status : null}
+        placeholder={filters.status ? filters.status : 'status'}
         onChange={statusChange}>
         <Select.Option value="">All</Select.Option>
         <Select.Option value="alive">Alive</Select.Option>
@@ -29,8 +28,7 @@ export const Filters: FC = memo(() => {
       </Select>
       <Select
         style={{ width: 120 }}
-        placeholder="gender"
-        defaultValue={filters.gender ? filters.gender : null}
+        placeholder={filters.gender ? filters.gender : 'gender'}
         onChange={genderChange}>
         <Select.Option value="">all</Select.Option>
         <Select.Option value="female">female</Select.Option>

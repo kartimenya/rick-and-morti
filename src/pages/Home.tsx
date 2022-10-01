@@ -24,16 +24,18 @@ const Home: FC = () => {
   const isMounted = useRef(false);
 
   useEffect(() => {
-    const params = (qs.parse(window.location.search.substring(1)) as unknown) as Iparams;
+    if (window.location.search) {
+      const params = (qs.parse(window.location.search.substring(1)) as unknown) as Iparams;
 
-    if (window.location.search && params.status && params.gender) {
-      disputch(
-        setFilters({
-          ...params,
-          page: Number(params.page),
-        }),
-      );
-      isSearch.current = true;
+      if (params.gender || params.status) {
+        disputch(
+          setFilters({
+            ...params,
+            page: Number(params.page),
+          }),
+        );
+        isSearch.current = true;
+      }
     }
   }, []);
 
