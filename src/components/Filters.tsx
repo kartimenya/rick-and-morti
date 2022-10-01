@@ -7,8 +7,6 @@ export const Filters: FC = memo(() => {
   const disputch = useAppDispatch();
   const filters = useAppSelector((state) => state.filter);
 
-  console.log('filters');
-
   const genderChange = (gender: string) => {
     disputch(setFilters({ ...filters, gender, page: 1 }));
   };

@@ -9,6 +9,12 @@ import { setFilters } from '../store/slises/FilterSlise';
 import { CharacterCartSpiner } from '../components/CharacterCart/CharacterCartSpiner';
 import qs from 'qs';
 
+interface Iparams {
+  page: string;
+  status: string;
+  gender: string;
+}
+
 const Home: FC = () => {
   const disputch = useAppDispatch();
   const { count, characters, loading } = useAppSelector((state) => state.characters);
@@ -17,12 +23,16 @@ const Home: FC = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
-  console.log('home');
-
   useEffect(() => {
-    if (window.location.search) {
-      const params: any = qs.parse(window.location.search.substring(1));
-      disputch(setFilters({ ...params, page: Number(params.page) }));
+    const params = (qs.parse(window.location.search.substring(1)) as unknown) as Iparams;
+
+    if (window.location.search && params.status && params.gender) {
+      disputch(
+        setFilters({
+          ...params,
+          page: Number(params.page),
+        }),
+      );
       isSearch.current = true;
     }
   }, []);
